@@ -1,0 +1,111 @@
+  .addcommentclass, .showcommentclass
+    {
+        cursor:pointer;
+        width:auto;
+        border-collapse:separate;
+        border-style:none;
+    }
+
+    body
+    {
+        background-color:#330099;
+    }
+    
+    p, span
+    {
+        color:#000000;
+        margin-bottom:2px;
+        margin-top:7px;
+    }
+    
+    p.showcommentclass, p.addcommentclass
+    {
+      display:table;
+      border-style:none;
+      margin-left:auto;
+      margin-right:auto;
+      color:#47A422; 
+      border-collapse:separate;
+
+    }
+    
+    a
+    {
+        text-decoration:none;
+        color:#F22077;
+    }
+
+    .gridview1
+    {
+        background-color:#FFFAED;
+     width:80%; 
+    margin-left:auto; 
+    margin-right:auto;
+     padding-left:40px;
+   }
+
+    .gridview2
+    {
+    background-color:#FEFEFE;
+    width:80%; 
+    margin-left:auto; 
+    margin-right:auto;
+   }
+   
+   body
+   {
+       color:Black;
+   }
+   
+   .divdiv
+   {
+    margin-left:auto; 
+    margin-right:auto; 
+    text-align:center;
+   }
+   
+      .divcomments
+   {
+    margin-left:auto; 
+    margin-right:auto; 
+    text-align:center;
+   }
+   
+   tr
+   {
+       border:0px;
+   }
+   
+   td
+   {
+       border:0px;
+   }
+   
+   #txtComment
+   {
+       margin-top:8px;
+   }
+   
+      .txtComment
+   {
+     font-size:12pt;
+   }
+   
+     .pagerst{
+    letter-spacing: 7px;
+   }
+   
+   
+   
+    #pager a
+        {
+            font-style: italic;
+            font-size: xx-large;
+            color:#FFFFAA;
+        }
+        
+         #pager 
+        {
+            font-style: italic;
+            font-size: xx-large;
+        }

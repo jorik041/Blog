@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="blogpostsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="blogpostsModelStoreContainer">
+          <EntitySet Name="blogcomments" EntityType="blogpostsModel.Store.blogcomments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="blogposts" EntityType="blogpostsModel.Store.blogposts" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="blogcomments">
+          <Key>
+            <PropertyRef Name="cID" />
+          </Key>
+          <Property Name="cID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="commentMsgText" Type="nvarchar" MaxLength="500" />
+          <Property Name="commentID" Type="int" Nullable="false" />
+          <Property Name="commentName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="blogposts">
+          <Key>
+            <PropertyRef Name="blogID" />
+          </Key>
+          <Property Name="blogID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="blogMsgText" Type="nvarchar(max)" />
+          <Property Name="posted" Type="datetime2" />
+          <Property Name="lastedited" Type="datetime2" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="blogpostsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="blogdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="blogcomments" EntityType="blogpostsModel.blogcomment" />
+          <EntitySet Name="blogposts" EntityType="blogpostsModel.blogpost" />
+          <AssociationSet Name="FK_blogcomments_blogposts" Association="blogpostsModel.FK_blogcomments_blogposts">
+            <End Role="blogposts" EntitySet="blogposts" />
+            <End Role="blogcomments" EntitySet="blogcomments" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="blogcomment">
+          <Key>
+            <PropertyRef Name="cID" />
+          </Key>
+          <Property Name="cID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="commentMsgText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="commentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="blogpost" Relationship="blogpostsModel.FK_blogcomments_blogposts" FromRole="blogcomments" ToRole="blogposts" />
+          <Property Type="String" Name="commentName" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="blogpost">
+          <Key>
+            <PropertyRef Name="blogID" />
+          </Key>
+          <Property Name="blogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="blogMsgText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="blogcomments" Relationship="blogpostsModel.FK_blogcomments_blogposts" FromRole="blogposts" ToRole="blogcomments" />
+          <Property Type="DateTime" Name="lastedited" />
+          <Property Type="DateTime" Name="posted" />
+        </EntityType>
+        <Association Name="FK_blogcomments_blogposts">
+          <End Role="blogposts" Type="blogpostsModel.blogpost" Multiplicity="1" />
+          <End Role="blogcomments" Type="blogpostsModel.blogcomment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="blogposts">
+              <PropertyRef Name="blogID" />
+            </Principal>
+            <Dependent Role="blogcomments">
+              <PropertyRef Name="commentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="blogpostsModelStoreContainer" CdmEntityContainer="blogdbEntities">
+          <EntitySetMapping Name="blogcomments"><EntityTypeMapping TypeName="blogpostsModel.blogcomment"><MappingFragment StoreEntitySet="blogcomments">
+            <ScalarProperty Name="commentName" ColumnName="commentName" />
+                <ScalarProperty Name="cID" ColumnName="cID" />
+            <ScalarProperty Name="commentMsgText" ColumnName="commentMsgText" />
+            <ScalarProperty Name="commentID" ColumnName="commentID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="blogposts"><EntityTypeMapping TypeName="blogpostsModel.blogpost"><MappingFragment StoreEntitySet="blogposts">
+            <ScalarProperty Name="posted" ColumnName="posted" />
+                <ScalarProperty Name="lastedited" ColumnName="lastedited" />
+                <ScalarProperty Name="blogID" ColumnName="blogID" />
+            <ScalarProperty Name="blogMsgText" ColumnName="blogMsgText" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="blogpostsModel">
+        <EntityTypeShape EntityType="blogpostsModel.blogcomment" Width="1.5" PointX="3" PointY="0.875" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="blogpostsModel.blogpost" Width="1.5" PointX="0.75" PointY="1" Height="1.9802864583333339" IsExpanded="true" />
+        <AssociationConnector Association="blogpostsModel.FK_blogcomments_blogposts" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="1.927643229166667" />
+          <ConnectorPoint PointX="3" PointY="1.927643229166667" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
